@@ -43,3 +43,55 @@ sudo apt upgrade
 cd /etc/default
 sudo nano grow
 ```
+
+## Camera
+
+* Connect the camera cable
+
+* Activate camera
+
+* Test the camera with `sudo raspistill -o image.jpg`
+
+* Transfer the file with `scp pi@raspberrypi.local:~/image.jpg Desktop/`
+
+## Taking pictures
+
+* git clone https://github.com/alexellis/phototimer
+
+```sh
+mkdir -p ~/image
+sudo nano /lib/systemd/system/phototimer.service
+```
+
+* Copy paste the following:
+
+```sh
+[Unit]
+Description=Take pictures every 2hours from 8am to 8pm
+After=multi-user.target
+
+[Service]
+Type=idle
+ExecStart=/usr/bin/python /home/pi/phototimer/take.py 120
+
+[Install]
+WantedBy=multi-user.target
+```
+
+* Then change the permissions on the file
+
+```sh
+sudo chmod 644 /lib/systemd/system/phototimer.service
+```
+
+* And enable the service
+
+```sh
+sudo systemctl daemon-reload
+
+sudo systemctl enable phototimer.service
+```
+
+* Reboot and watch the service being started
+
+> To transfer the files from the Raspberry to your local computer: `scp -r pi@192.168.1.20:~/image Desktop/`
