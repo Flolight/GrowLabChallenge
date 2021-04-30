@@ -50,6 +50,12 @@ sudo nano grow
 
 * Activate camera
 
+```bash
+sudo raspi-config
+```
+  *  select `Interface Options` then `Camera`and activate
+
+
 * Test the camera with `sudo raspistill -o image.jpg`
 
 * Transfer the file with `scp pi@raspberrypi.local:~/image.jpg Desktop/`
