@@ -37,12 +37,26 @@ sudo apt upgrade
 
 * Stoping the service: `sudo systemctl stop grow-monitor.service`
 
+* Create an alias for service start/stop
+
+```bash
+alias growstart='sudo systemctl start grow-monitor.service'
+alias growstop='sudo systemctl stop grow-monitor.service'
+```
+
 * Edit configuration file:
 
 ```sh
 cd /etc/default
 sudo nano grow
 ```
+
+* To remove the key-pair when having a fresh install
+
+```bash
+#change the ip!!!
+ssh-keygen -R 192.168.1.20
+ ```
 
 ## Camera
 
@@ -101,3 +115,13 @@ sudo systemctl enable phototimer.service
 * Reboot and watch the service being started
 
 > To transfer the files from the Raspberry to your local computer: `scp -r pi@192.168.1.20:~/image Desktop/`
+
+```json
+channel1: {auto_water: true, dry_point: 27, enabled: true, pump_speed: 0.6, pump_time: 0.7,
+  warn_level: 0.3, watering_delay: 60, wet_point: 6.0}
+channel2: {auto_water: true, dry_point: 27, enabled: true, pump_speed: 0.6, pump_time: 0.6,
+  warn_level: 0.3, watering_delay: 60, wet_point: 6.0}
+channel3: {auto_water: true, dry_point: 27, enabled: true, pump_speed: 0.7, pump_time: 0.7,
+  warn_level: 0.3, watering_delay: 60, wet_point: 6.0}
+general: {alarm_enable: false, alarm_interval: 2}
+```
