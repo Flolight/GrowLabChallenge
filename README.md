@@ -116,6 +116,9 @@ sudo systemctl enable phototimer.service
 
 > To transfer the files from the Raspberry to your local computer: `scp -r pi@192.168.1.20:~/image Desktop/`
 
+> To generate a timelapse from your pictures: `echo $(echo $(find ./Desktop/image/ | sort -V|grep jpg)) | xargs cat | ffmpeg  -framerate 10 -f image2pipe -vcodec mjpeg -i - -vcodec libx264 out.mp4`
+
+* Example of some parameters for the Grow Hat Mini
 ```json
 channel1: {auto_water: true, dry_point: 27, enabled: true, pump_speed: 0.6, pump_time: 0.7,
   warn_level: 0.3, watering_delay: 60, wet_point: 6.0}
